@@ -1,90 +1,115 @@
-HashFW
+# 🔐 HashFW
 
-Framework minimaliste de cracking de hash développé en C.
+> Mini framework de cracking de hash développé en C ⚡
 
-Supporte :
+HashFW est un outil CLI léger permettant d’effectuer des attaques par dictionnaire sur différents types de hash comme :
 
-attaques par dictionnaire MD5
+- 🔓 MD5
 
-attaques par dictionnaire SHA256
+- 🔐 SHA256
 
-mode dictionnaire brut
+- 📚 Dictionary Mode
 
-interface CLI interactive
 
-Fonctionnalités
+Le projet a été conçu dans un objectif :
 
-Interface en ligne de commande interactive
+- d’apprentissage
 
-Support MD5
+- de compréhension des fonctions de hash
 
-Support SHA256
+- d’expérimentation locale en environnement contrôlé
 
-Support des wordlists
+---
 
-Compatible Linux
+# ✨ Fonctionnalités
 
-Architecture légère et simple
+✅ Interface CLI interactive  
 
-Implémentation dans un seul fichier
+✅ Support MD5  
 
-Prérequis
+✅ Support SHA256  
 
-GCC
+✅ Support des wordlists  
 
-Bibliothèques de développement OpenSSL
+✅ Architecture simple et modulaire  
 
-Installation
+✅ Compatible Linux / Kali Linux  
 
-Debian / Ubuntu / Kali Linux
+✅ Implémentation dans un seul fichier  
 
-Installer les dépendances :
+✅ Framework extensible  
 
+---
+
+# 📦 Prérequis
+
+Avant compilation, installer :
+
+- 🛠 GCC
+
+- 🔑 OpenSSL Dev Libraries
+
+---
+
+# ⚙️ Installation
+
+## 🐧 Debian / Ubuntu / Kali Linux
+
+### Installer les dépendances
+```bash
 sudo apt install gcc libssl-dev
+```
 
-Compiler le programme :
+---
 
+### Compiler le framework
+```bash
 gcc hashcat.c -o hashcat -lcrypto -lssl
+```
 
-Lancer le framework :
+---
+
+### Lancer HashFW
 ```bash
 ./hashcat
 ```
-Utilisation
 
-Démarrer le framework
+---
+
+# 🖥️ Interface CLI
+
+Une fois lancé :
 ```bash
-./hashcat
+HashFW CLI v1.0
+
+hashfw >
 ```
-Commandes
 
-Commande	Description
+---
 
--u <module>	Sélectionner un module
+# 📚 Commandes Disponibles
 
---use <module>	Sélectionner un module
+| Commande | Description |
+```bash
+|---|---|
+| -u <module> | 🔧 Sélectionner un module |
+| --use <module> | 🔧 Sélectionner un module |
+| -sh <hash> | 🎯 Définir le hash cible |
+| --hash <hash> | 🎯 Définir le hash cible |
+| -sw <fichier> | 📂 Charger une wordlist |
+| --wordlist <fichier> | 📂 Charger une wordlist |
+| -r | 🚀 Lancer l’attaque |
+| --run | 🚀 Lancer l’attaque |
+| -h | ❓ Afficher l’aide |
+| --help | ❓ Afficher l’aide |
+| exit | 🚪 Quitter le framework |
+```
 
--sh <hash>	Définir le hash cible
+---
 
---hash <hash>	Définir le hash cible
+# 🧩 Modules Disponibles
 
--sw <fichier>	Définir la wordlist
-
---wordlist <fichier>	Définir la wordlist
-
--r	Lancer l’attaque
-
---run	Lancer l’attaque
-
--h	Afficher l’aide
-
---help	Afficher l’aide
-
-exit	Quitter le framework
-
-Modules Disponibles
-
-MD5
+## 🔓 MD5
 
 Effectue une attaque par dictionnaire sur un hash MD5.
 
@@ -93,7 +118,9 @@ Exemple :
 -u md5
 ```
 
-SHA256
+---
+
+## 🔐 SHA256
 
 Effectue une attaque par dictionnaire sur un hash SHA256.
 
@@ -102,30 +129,41 @@ Exemple :
 -u sha256
 ```
 
-DICT
+---
 
-Mode dictionnaire brut (comparaison directe de texte).
+## 📚 DICT
+
+Mode dictionnaire brut :
+
+compare directement le texte avec l’entrée cible.
 
 Exemple :
 ```bash
 -u dict
 ```
 
-Exemple Complet
+---
 
-Crack d’un hash MD5
+# 🚀 Exemple Complet
 
-Hash cible :
+## 🔓 Crack d’un hash MD5
+
+### Hash cible
 ```bash
 5d41402abc4b2a76b9719d911017c592
 ```
 
-Texte correspondant :
+---
+
+### Mot correspondant
 ```bash
 hello
 ```
-Contenu de test.txt :
-```bash
+
+---
+
+### Contenu du fichier test.txt
+
 hello
 
 admin
@@ -133,111 +171,131 @@ admin
 password
 
 test
-```
-Commandes :
+
+---
+
+## ⚡ Commandes
 ```bash
 -u md5
-
 -sh 5d41402abc4b2a76b9719d911017c592
-
 -sw test.txt
-
 -r
 ```
 
-Résultat :
-```bash
-[+] FOUND: hello
-Wordlists sur Kali Linux
-RockYou
-```
+---
 
-Emplacement par défaut :
+## ✅ Résultat
+
+[+] FOUND: hello
+
+---
+
+# 📂 Wordlists sur Kali Linux
+
+## 🔥 RockYou
+
+Wordlist très connue en cybersécurité.
+
+### Emplacement
 
 /usr/share/wordlists/rockyou.txt
 
-Si le fichier est compressé :
+---
+
+## 📦 Si compressée
 ```bash
 gunzip /usr/share/wordlists/rockyou.txt.gz
 ```
 
-Utilisation :
+---
+
+## 📌 Utilisation dans HashFW
 ```bash
 -sw /usr/share/wordlists/rockyou.txt
 ```
-Algorithmes Supportés
 
-Algorithme	Support
+---
 
-MD5	Oui
+# 🔐 Algorithmes Supportés
 
-SHA256	Oui
+| Algorithme | Statut |
 
-Structure du Projet
+|---|---|
 
-Implémentation en un seul fichier :
+| 🔓 MD5 | ✅ Supporté |
 
-hashcat.c
+| 🔐 SHA256 | ✅ Supporté |
 
-Fonctionnement Interne
+---
 
-Sélection du module
+# 🧠 Fonctionnement Interne
 
-Chargement du hash cible
+HashFW fonctionne de cette manière :
 
-Chargement de la wordlist
+1️⃣ Sélection du module  
 
-Lecture ligne par ligne
+2️⃣ Chargement du hash cible  
 
-Génération du hash
+3️⃣ Chargement de la wordlist  
 
-Comparaison avec le hash cible
+4️⃣ Lecture ligne par ligne  
 
-Affichage du résultat si correspondance
+5️⃣ Génération du hash correspondant  
 
-Warnings OpenSSL
+6️⃣ Comparaison avec le hash cible  
 
-Avec OpenSSL 3.x, il est possible d’obtenir :
+7️⃣ Affichage du résultat si correspondance  
+
+---
+
+# ⚠️ Warning OpenSSL
+
+Avec OpenSSL 3.x, ce warning peut apparaître :
 
 MD5 is deprecated
 
-Ce warning est normal et n’empêche pas l’exécution du programme.
+👉 Cela est normal et n’empêche pas l’exécution du programme.
 
-Sécurité & Avertissement
+---
 
-Ce projet est destiné :
+# 🛡️ Sécurité & Avertissement
 
-à l’apprentissage
+⚠️ Ce projet est destiné uniquement :
 
-à l’étude des algorithmes de hash
+- à l’apprentissage
 
-aux audits locaux autorisés
+- aux laboratoires de test
 
-aux laboratoires et environnements de test
+- à l’étude des algorithmes de hash
 
+- aux audits autorisés
 
-Utilisez uniquement ce programme sur :
+❌ Toute utilisation non autorisée sur des systèmes tiers peut être illégale.
 
-vos propres systèmes
+---
 
-ou des systèmes pour lesquels vous avez une autorisation explicite
-
-Toute utilisation non autorisée peut être illégale.
-
-Améliorations Futures
+# 🚧 Améliorations Futures
 
 Fonctionnalités prévues :
 
-multi-threading
+- ⚡ Multi-threading
 
-détection automatique du type de hash
+- 🔍 Détection automatique des hash
 
-système de plugins/modules
+- 🧩 Plugins dynamiques
 
-statistiques de performance
+- 📊 Statistiques de performance
 
-mode brute-force
+- 💥 Mode brute-force
 
-support NTLM
+- 🔐 Support NTLM
 
-support bcrypt
+- 🔒 Support bcrypt
+
+---
+
+# 📁 Structure du Projet
+
+hashcat.c
+
+README.md
